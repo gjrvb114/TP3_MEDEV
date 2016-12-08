@@ -1,7 +1,8 @@
-CC = g++
+﻿CC = g++
 
 GTESTLIB = /home/user/Bureau/googletest
-GTESTINC = "/home/user/Bureau/googletest/include"
+GTESTINC = /home/user/Bureau/googletest/include
+
 
 all: JeuDeGo
 
