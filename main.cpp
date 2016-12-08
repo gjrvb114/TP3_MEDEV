@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include "Goban.h"
 
 TEST (Testtest, egalite) { 
     ASSERT_EQ (0.0, 1.0);
