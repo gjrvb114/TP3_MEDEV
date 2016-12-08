@@ -1,7 +1,7 @@
-CC = g++
+﻿CC = g++
 
-GTESTLIB = "/home/user/Bureau/googletest"
-GTESTINC = "/home/user/Bureau/googletest/include"
+GTESTLIB = "/media/sf_Z_DRIVE/MEDEV/googletest-master/googletest"
+GTESTINC = "/media/sf_Z_DRIVE/MEDEV/googletest-master/googletest/include"
 
 all: JeuDeGo
 
