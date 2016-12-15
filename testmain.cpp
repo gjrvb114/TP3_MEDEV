@@ -5,7 +5,8 @@ using namespace std;
 
 int main()
 {
-	Goban machin = Goban();
+    ifstream load("text.txt");
+	Goban machin;
         machin.PoserPierre(2,2);
         machin.PoserPierre(2,3);
         machin.PoserPierre(1,2);
@@ -13,6 +14,7 @@ int main()
         machin.SetJoueur();
         machin.PoserPierre(1,3);
         machin.Affichage();
+        machin.Sauvegarder(1);
         cout << endl;
         cout << "truc"<< endl;
         vector<vector<int> > ListeGroupe;

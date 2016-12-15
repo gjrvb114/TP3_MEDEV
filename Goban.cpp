@@ -36,6 +36,7 @@ void Goban::Affichage(){
 
 Goban::Goban()
 {
+    save.open("text.txt");
 
 	for (int i = 0;i<TAILLE;i++)
 		{
@@ -137,7 +138,7 @@ void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<in
 
 }
 
-int Goban::ListeGroupe(int x,int y)
+vector<vector<int> > Goban::ListeGroupe(int x,int y)
 {
 	vector<vector<int> > ListeGroupe;
 	vector<vector<int> > tab;
@@ -151,4 +152,28 @@ int Goban::ListeGroupe(int x,int y)
 
 
 
+}
+
+void Goban::Sauvegarder(int coup)
+{
+    save << "Coup " << coup << endl;
+    save << "Joueur ";
+    if(Joueur1Actif)
+    {
+        save << 1;
+    }
+    else
+    {
+        save << 2;
+    }
+    save << endl;
+    for(int i=0; i<TAILLE; i++)
+    {
+        for(int j=0; j<TAILLE; j++)
+        {
+            save << plateau[i][j];
+        }
+        save << endl;
+    }
+    save << endl;
 }

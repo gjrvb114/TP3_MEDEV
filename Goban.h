@@ -18,7 +18,7 @@ const int TAILLE = 5;
 class Goban
 	{
 	private:
-		//fstream save;
+                ofstream save;
 		int plateau[TAILLE][TAILLE];
 		bool Joueur1Actif;
 		bool Apasse;
@@ -34,7 +34,7 @@ class Goban
 		void Affichage();
 		void Jouer();
 		void EffacerGroupe(int x,int y);
-		void Sauvegarder();
+		void Sauvegarder(int coup);
 		bool CoupDejaJoue();
 		void CompterPoints();
 	};
