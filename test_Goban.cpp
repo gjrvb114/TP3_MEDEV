@@ -30,8 +30,8 @@ TEST (GobanClass, ListeGroupe)
 	machin.Affichage();
 	EXPECT_EQ(4,machin.ListeGroupe(2,2).size());
 	EXPECT_EQ(4,machin.ListeGroupe(2,3).size());
-	EXPECT_EQ(4,machin.ListeGroupe(1,3).size());
-	EXPECT_EQ(4,machin.ListeGroupe(4,4).size());
+	EXPECT_EQ(1,machin.ListeGroupe(1,3).size());
+	EXPECT_EQ(20,machin.ListeGroupe(4,4).size());
 }
 /*
 TEST(IntegerFunctionTest, negative) {

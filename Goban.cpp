@@ -98,10 +98,8 @@ bool Goban::VerifierCase(int x, int y, int couleur, vector<vector<int> > &ListeG
 }
 
 void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<int> > &ListeGroupe)
-{
+{	cout << "listegroupe taille = " << ListeGroupe.size()<<endl;
 	vector<vector<int> > Nouveau ;
-	if (tab.size() != 0)
-	{
 		for (unsigned int i=0 ;i<tab.size();i++)
 		{
 			int x = tab[i][0];
@@ -140,10 +138,12 @@ void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<in
 						ListeGroupe.push_back(couple);
 					}
 
-
+			cout << "NOuveau taille = " << Nouveau.size() << endl;
 		}
-	GroupFinder(couleur,Nouveau,ListeGroupe);
-	}
+		if (Nouveau.size() != 0)
+		{
+		GroupFinder(couleur,Nouveau,ListeGroupe);
+		}
 
 }
 
