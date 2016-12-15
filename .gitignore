@@ -24,3 +24,5 @@ inc/facto.h
 main.o
 test/test_facto.cpp
 test/testmain.cpp
+/dist/
+/build/
