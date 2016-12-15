@@ -8,6 +8,7 @@
 #include "Goban.h"
 #include <iostream>
 #include <vector>
+#include "utilitaire.h"
 using namespace std;
 
 void Goban::Affichage(){
@@ -74,18 +75,7 @@ void Goban::SetJoueur()
 	Joueur1Actif = !Joueur1Actif;
 }
 
-bool static EstDansListe(int x, int y, vector<vector<int> > &Liste)
-{
-	bool Sortie = false ;
-	for (unsigned int i = 0 ; i< Liste.size(); i++)
-	{
-		if (Liste[i][0] == x &&  Liste[i][1] == y)
-		{
-			Sortie = true;
-		}
-	}
-	return Sortie;
-}
+
 
 bool Goban::VerifierCase(int x, int y, int couleur, vector<vector<int> > &ListeGroupe)
 {
@@ -98,7 +88,7 @@ bool Goban::VerifierCase(int x, int y, int couleur, vector<vector<int> > &ListeG
 }
 
 void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<int> > &ListeGroupe)
-{	cout << "listegroupe taille = " << ListeGroupe.size()<<endl;
+{
 	vector<vector<int> > Nouveau ;
 		for (unsigned int i=0 ;i<tab.size();i++)
 		{
@@ -107,8 +97,8 @@ void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<in
 			if (VerifierCase(x+1,y,couleur,ListeGroupe))
 			{
 				vector<int> couple;
-				couple[0] = x+1;
-				couple[1] = y;
+				couple.push_back(x+1);
+				couple.push_back( y);
 				Nouveau.push_back(couple);
 				ListeGroupe.push_back(couple);
 			}
@@ -116,24 +106,24 @@ void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<in
 			if (VerifierCase(x-1,y,couleur,ListeGroupe))
 					{
 						vector<int> couple ;
-						couple[0] = x-1;
-						couple[1] = y;
+						couple.push_back( x-1);
+						couple.push_back( y);
 						Nouveau.push_back(couple);
 						ListeGroupe.push_back(couple);
 					}
 			if (VerifierCase(x,y+1,couleur,ListeGroupe))
 					{
 										vector<int> couple ;
-										couple[0] = x;
-										couple[1] = y+1;
+										couple.push_back( x);
+										couple.push_back( y+1);
 						Nouveau.push_back(couple);
 						ListeGroupe.push_back(couple);
 					}
 			if (VerifierCase(x,y-1,couleur,ListeGroupe))
 					{
 										vector<int> couple ;
-										couple[0] = x;
-										couple[1] = y-1;
+										couple.push_back( x);
+										couple.push_back( y-1);
 						Nouveau.push_back(couple);
 						ListeGroupe.push_back(couple);
 					}
@@ -152,8 +142,8 @@ vector<vector<int> > Goban::ListeGroupe(int x,int y)
 	vector<vector<int> > ListeGroupe;
 	vector<vector<int> > tab;
 	vector<int> couple ;
-	couple[0] = x;
-	couple[1] = y;
+	couple.push_back( x);
+	couple.push_back( y);
 	ListeGroupe.push_back(couple);
 	tab.push_back(couple);
 	GroupFinder(plateau[x][y],tab,ListeGroupe);

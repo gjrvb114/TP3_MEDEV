@@ -20,8 +20,9 @@ class Goban
 		int plateau[TAILLE][TAILLE];
 		bool Joueur1Actif;
 		bool Apasse;
-	enum Case{VIDE =0,NOIR = 1 ,BLANC = 2};
+
 	public:
+		enum Case{VIDE =0,NOIR = 1 ,BLANC = 2};
 		Goban();
 		void SetJoueur();
 		bool PoserPierre(int x, int y); // x = i et y = j dans le tableau
@@ -35,3 +36,5 @@ class Goban
 		bool CoupDejaJoue();
 		void CompterPoints();
 	};
+
+bool EstDansListe(int x,int y, vector<vector<int> > &Liste);
