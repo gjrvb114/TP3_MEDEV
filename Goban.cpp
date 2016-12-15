@@ -128,7 +128,7 @@ void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<in
 						ListeGroupe.push_back(couple);
 					}
 
-			cout << "NOuveau taille = " << Nouveau.size() << endl;
+
 		}
 		if (Nouveau.size() != 0)
 		{
@@ -151,4 +151,45 @@ vector<vector<int> > Goban::ListeGroupe(int x,int y)
 
 
 
+}
+
+int Goban::LiberteGroupe(int a, int b)
+{
+	vector<vector<int> > ListGroupe = ListeGroupe(a,b);
+	vector<vector<int> > ListeCaseVide;
+	for (int i = 0 ; i< ListGroupe.size() ; i++)
+	{
+		int x = ListGroupe[i][0];
+		int y = ListGroupe[i][1];
+		if (VerifierCase(x+1,y,VIDE,ListeCaseVide))
+					{
+						vector<int> couple;
+						couple.push_back(x+1);
+						couple.push_back( y);
+						ListeCaseVide.push_back(couple);
+					}
+
+					if (VerifierCase(x-1,y,VIDE,ListeCaseVide))
+							{
+								vector<int> couple ;
+								couple.push_back( x-1);
+								couple.push_back( y);
+								ListeCaseVide.push_back(couple);
+							}
+					if (VerifierCase(x,y+1,VIDE,ListeCaseVide))
+							{
+												vector<int> couple ;
+												couple.push_back( x);
+												couple.push_back(y+1);
+								ListeCaseVide.push_back(couple);
+							}
+					if (VerifierCase(x,y-1,VIDE,ListeCaseVide))
+							{
+												vector<int> couple ;
+												couple.push_back( x);
+												couple.push_back(y-1);
+								ListeCaseVide.push_back(couple);
+							}
+	}
+	return ListeCaseVide.size();
 }
