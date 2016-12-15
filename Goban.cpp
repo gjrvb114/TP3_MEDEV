@@ -147,13 +147,17 @@ void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<in
 
 }
 
-int Goban::LiberteGroupe(int x,int y)
+int Goban::ListeGroupe(int x,int y)
 {
 	vector<vector<int> > ListeGroupe;
+	vector<vector<int> > tab;
 	vector<int> couple ;
 	couple[0] = x;
 	couple[1] = y;
 	ListeGroupe.push_back(couple);
+	tab.push_back(couple);
+	GroupFinder(plateau[x][y],tab,ListeGroupe);
+	return ListeGroupe;
 
 
 

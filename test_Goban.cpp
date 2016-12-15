@@ -18,6 +18,21 @@ TEST(GobanClass,PoserPierre){
 	EXPECT_EQ(true,machin.PoserPierre(2,3));
 	EXPECT_EQ(false,machin.PoserPierre(2,2));
 }
+TEST (GobanClass, ListeGroupe)
+{
+	Goban machin = Goban();
+	machin.PoserPierre(2,2);
+	machin.PoserPierre(2,3);
+	machin.PoserPierre(1,2);
+	machin.PoserPierre(3,3);
+	machin.SetJoueur();
+	machin.PoserPierre(1,3);
+	machin.Affichage();
+	EXPECT_EQ(4,machin.ListeGroupe(2,2).size());
+	EXPECT_EQ(4,machin.ListeGroupe(2,3).size());
+	EXPECT_EQ(4,machin.ListeGroupe(1,3).size());
+	EXPECT_EQ(4,machin.ListeGroupe(4,4).size());
+}
 /*
 TEST(IntegerFunctionTest, negative) {
         EXPECT_EQ(1, factorial(-5));
