@@ -9,6 +9,7 @@
 
 #pragma once
 #include <iostream>
+#include <vector>
 using namespace std;
 
 const int TAILLE = 5;
@@ -25,6 +26,8 @@ class Goban
 		void SetJoueur();
 		bool PoserPierre(int x, int y); // x = i et y = j dans le tableau
 		int LiberteGroupe(int x,int y);
+		bool VerifierCase(int x, int y, int couleur, vector<vector<int> > &ListeGroupe);
+		void GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<int> > &ListeGroupe);
 		void Affichage();
 		void Jouer();
 		void EffacerGroupe(int x,int y);

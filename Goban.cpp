@@ -7,6 +7,7 @@
 
 #include "Goban.h"
 #include <iostream>
+#include <vector>
 using namespace std;
 
 void Goban::Affichage(){
@@ -73,3 +74,87 @@ void Goban::SetJoueur()
 	Joueur1Actif = !Joueur1Actif;
 }
 
+bool static EstDansListe(int x, int y, vector<vector<int> > &Liste)
+{
+	bool Sortie = false ;
+	for (unsigned int i = 0 ; i< Liste.size(); i++)
+	{
+		if (Liste[i][0] == x &&  Liste[i][1] == y)
+		{
+			Sortie = true;
+		}
+	}
+	return Sortie;
+}
+
+bool Goban::VerifierCase(int x, int y, int couleur, vector<vector<int> > &ListeGroupe)
+{
+	bool un  = (x < TAILLE && y< TAILLE);
+	bool deux = (y >=0 && x >= 0 );
+	bool trois = (plateau[x][y] == couleur);
+	bool quatre (!EstDansListe(x,y,ListeGroupe));
+	return  (un && deux && trois && quatre) ; // zéro !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+}
+
+void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<int> > &ListeGroupe)
+{
+	vector<vector<int> > Nouveau ;
+	if (tab.size() != 0)
+	{
+		for (unsigned int i=0 ;i<tab.size();i++)
+		{
+			int x = tab[i][0];
+			int y = tab[i][1];
+			if (VerifierCase(x+1,y,couleur,ListeGroupe))
+			{
+				vector<int> couple;
+				couple[0] = x+1;
+				couple[1] = y;
+				Nouveau.push_back(couple);
+				ListeGroupe.push_back(couple);
+			}
+
+			if (VerifierCase(x-1,y,couleur,ListeGroupe))
+					{
+						vector<int> couple ;
+						couple[0] = x-1;
+						couple[1] = y;
+						Nouveau.push_back(couple);
+						ListeGroupe.push_back(couple);
+					}
+			if (VerifierCase(x,y+1,couleur,ListeGroupe))
+					{
+										vector<int> couple ;
+										couple[0] = x;
+										couple[1] = y+1;
+						Nouveau.push_back(couple);
+						ListeGroupe.push_back(couple);
+					}
+			if (VerifierCase(x,y-1,couleur,ListeGroupe))
+					{
+										vector<int> couple ;
+										couple[0] = x;
+										couple[1] = y-1;
+						Nouveau.push_back(couple);
+						ListeGroupe.push_back(couple);
+					}
+
+
+		}
+	GroupFinder(couleur,Nouveau,ListeGroupe);
+	}
+
+}
+
+int Goban::LiberteGroupe(int x,int y)
+{
+	vector<vector<int> > ListeGroupe;
+	vector<int> couple ;
+	couple[0] = x;
+	couple[1] = y;
+	ListeGroupe.push_back(couple);
+
+
+
+}
