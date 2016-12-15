@@ -24,3 +24,6 @@ inc/facto.h
 main.o
 test/test_facto.cpp
 test/testmain.cpp
+Debug/
+gtest/gtest-all.cc
+gtest/gtest.h
