@@ -29,6 +29,7 @@ class Goban
 		void SetJoueur();
 		bool PoserPierre(int x, int y); // x = i et y = j dans le tableau
 		vector<vector<int> > ListeGroupe(int x,int y);
+		int LiberteGroupe(int x, int y);
 		bool VerifierCase(int x, int y, int couleur, vector<vector<int> > &ListeGroupe);
 		void GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<int> > &ListeGroupe);
 		void Affichage();
