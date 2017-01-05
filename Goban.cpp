@@ -36,7 +36,6 @@ void Goban::Affichage(){
 
 Goban::Goban()
 {
-    save.open("text.txt");
 
 	for (int i = 0;i<TAILLE;i++)
 		{
