@@ -1,14 +1,6 @@
-/*
- * Goban.cpp
- *
- *  Created on: 15 déc. 2016
- *      Author: user
- */
-
 #include "Goban.h"
-#include <iostream>
-#include <vector>
-#include "utilitaire.h"
+
+
 using namespace std;
 
 void Goban::Affichage(){
@@ -32,11 +24,12 @@ void Goban::Affichage(){
 		}
 		cout <<endl;
 	}
+	cout << endl;
 }
 
 Goban::Goban()
 {
-
+	ofstream save("test_save.txt");
 	for (int i = 0;i<TAILLE;i++)
 		{
 			for (int j=0 ; j<TAILLE;j++)
@@ -102,37 +95,34 @@ void Goban::GroupFinder(int couleur, vector<vector<int> > &tab, vector<vector<in
 				Nouveau.push_back(couple);
 				ListeGroupe.push_back(couple);
 			}
-
 			if (VerifierCase(x-1,y,couleur,ListeGroupe))
-					{
-						vector<int> couple ;
-						couple.push_back( x-1);
-						couple.push_back( y);
-						Nouveau.push_back(couple);
-						ListeGroupe.push_back(couple);
-					}
+			{
+				vector<int> couple ;
+				couple.push_back( x-1);
+				couple.push_back( y);
+				Nouveau.push_back(couple);
+				ListeGroupe.push_back(couple);
+			}
 			if (VerifierCase(x,y+1,couleur,ListeGroupe))
-					{
-										vector<int> couple ;
-										couple.push_back( x);
-										couple.push_back( y+1);
-						Nouveau.push_back(couple);
-						ListeGroupe.push_back(couple);
-					}
+			{
+								vector<int> couple ;
+								couple.push_back( x);
+								couple.push_back( y+1);
+				Nouveau.push_back(couple);
+				ListeGroupe.push_back(couple);
+			}
 			if (VerifierCase(x,y-1,couleur,ListeGroupe))
-					{
-										vector<int> couple ;
-										couple.push_back( x);
-										couple.push_back( y-1);
-						Nouveau.push_back(couple);
-						ListeGroupe.push_back(couple);
-					}
-
-
+			{
+								vector<int> couple ;
+								couple.push_back( x);
+								couple.push_back( y-1);
+				Nouveau.push_back(couple);
+				ListeGroupe.push_back(couple);
+			}
 		}
 		if (Nouveau.size() != 0)
 		{
-		GroupFinder(couleur,Nouveau,ListeGroupe);
+			GroupFinder(couleur,Nouveau,ListeGroupe);
 		}
 
 }
@@ -141,16 +131,13 @@ vector<vector<int> > Goban::ListeGroupe(int x,int y)
 {
 	vector<vector<int> > ListeGroupe;
 	vector<vector<int> > tab;
-	vector<int> couple ;
-	couple.push_back( x);
-	couple.push_back( y);
+	vector<int> couple;
+	couple.push_back(x);
+	couple.push_back(y);
 	ListeGroupe.push_back(couple);
 	tab.push_back(couple);
 	GroupFinder(plateau[x][y],tab,ListeGroupe);
 	return ListeGroupe;
-
-
-
 }
 
 void Goban::Sauvegarder(int coup)
@@ -179,8 +166,7 @@ void Goban::Sauvegarder(int coup)
         }
         save << endl;
     }
-    save << endl;
-    
+    save << endl;    
 }
     
 int Goban::LiberteGroupe(int a, int b)
@@ -192,39 +178,108 @@ int Goban::LiberteGroupe(int a, int b)
 		int x = ListGroupe[i][0];
 		int y = ListGroupe[i][1];
 		if (VerifierCase(x+1,y,VIDE,ListeCaseVide))
-					{
-						vector<int> couple;
-						couple.push_back(x+1);
-						couple.push_back( y);
-						ListeCaseVide.push_back(couple);
-					}
+		{
+			vector<int> couple;
+			couple.push_back(x+1);
+			couple.push_back( y);
+			ListeCaseVide.push_back(couple);
+		}
 
-					if (VerifierCase(x-1,y,VIDE,ListeCaseVide))
-							{
-								vector<int> couple ;
-								couple.push_back( x-1);
-								couple.push_back( y);
-								ListeCaseVide.push_back(couple);
-							}
-					if (VerifierCase(x,y+1,VIDE,ListeCaseVide))
-							{
-												vector<int> couple ;
-												couple.push_back( x);
-												couple.push_back(y+1);
-								ListeCaseVide.push_back(couple);
-							}
-					if (VerifierCase(x,y-1,VIDE,ListeCaseVide))
-							{
-												vector<int> couple ;
-												couple.push_back( x);
-												couple.push_back(y-1);
-								ListeCaseVide.push_back(couple);
-							}
+		if (VerifierCase(x-1,y,VIDE,ListeCaseVide))
+		{
+			vector<int> couple ;
+			couple.push_back( x-1);
+			couple.push_back( y);
+			ListeCaseVide.push_back(couple);
+		}
+		if (VerifierCase(x,y+1,VIDE,ListeCaseVide))
+		{
+			vector<int> couple ;
+			couple.push_back( x);
+			couple.push_back(y+1);
+			ListeCaseVide.push_back(couple);
+		}
+		if (VerifierCase(x,y-1,VIDE,ListeCaseVide))
+		{
+			vector<int> couple ;
+			couple.push_back( x);
+			couple.push_back(y-1);
+			ListeCaseVide.push_back(couple);
+		}
 	}
 	return ListeCaseVide.size();
 }
 
-bool CoupDejaJoue()
+// Renvoie true ssi la case existe dans le goban
+bool Goban::EstDedans(int x, int y)
+{
+	return (x>=0 && y>=0 && x<TAILLE && y<TAILLE);
+}
+
+// Renvoie les 4 voisins d'une case
+vector<pair<int,int>> Goban::Voisins(int x, int y)
+{
+	// On parcourt les voisins et vérifie qu'ils sont dans le plateau
+	vector<pair<int,int>> v;
+	for(int i=-1; i<2; i+=2)
+	{
+		if(EstDedans(x+i, y))
+		{
+			v.push_back(pair<int,int>(x+i, y));
+		}
+	}
+	for(int j=-1; j<2; j+=2)
+	{
+		if(EstDedans(x, y+j))
+		{
+			v.push_back(pair<int,int>(x, y+j));
+		}
+	}
+	return v;
+}
+
+//Retourne la couleur inverse
+//si la couleur est VIDE, renvoie VIDE
+int Goban::couleurInverse(const int& couleur)
+{
+	int inverse(VIDE);
+	if(couleur==NOIR)
+	{
+		inverse = BLANC;
+	}
+	else if(couleur==BLANC)
+	{
+		inverse = NOIR;
+	}
+	return inverse;
+}
+
+// Efface les groupes voisins qui appartiennent à l'adversaire et qui sont capturés
+void Goban::EffacerGroupe(int x,int y)
+{
+	// Voisin contient les voisins de la case en (x,y)
+	vector<pair<int,int>> voisins(Voisins(x, y));
+	// Groupe contiendra un groupe de pierres à supprimer
+	vector<vector<int>> groupe;
+	// On parcourt la liste des voisins
+	for(vector<pair<int,int>>::iterator it=voisins.begin(); it!=voisins.end(); it++)
+	{
+		cout << it->first << " , " << it->second << endl;
+		// Si le voisins n'est pas de la même couleur que la pierre en (x,y) et que son groupe n'est plus libre
+		// Alors on le supprime
+		if (plateau[it->first][it->second]==couleurInverse(plateau[x][y]) && LiberteGroupe(it->first, it->second)==0)
+		{
+			groupe = ListeGroupe(it->first, it->second);
+			for(vector<vector<int>>::iterator itGroupe=groupe.begin(); itGroupe!=groupe.end(); itGroupe++)
+			{
+				plateau[(*itGroupe)[0]][(*itGroupe)[1]] = VIDE;
+			}
+		}
+	}
+}
+
+bool Goban::CoupDejaJoue()
 {
     
 }
+
