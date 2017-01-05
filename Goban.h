@@ -9,6 +9,7 @@
 
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -20,6 +21,7 @@ class Goban
 		int plateau[TAILLE][TAILLE];
 		bool Joueur1Actif;
 		bool Apasse;
+		//ofstream save;
 
 	public:
 		enum Case{VIDE =0,NOIR = 1 ,BLANC = 2};
@@ -33,7 +35,7 @@ class Goban
 		void Affichage();
 		void Jouer();
 		void EffacerGroupe(int x,int y);
-		void Sauvegarder();
+		void Sauvegarder(int coup);
 		bool CoupDejaJoue();
 		void CompterPoints();
 	};

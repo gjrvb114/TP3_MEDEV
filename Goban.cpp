@@ -36,7 +36,7 @@ void Goban::Affichage(){
 
 Goban::Goban()
 {
-
+	//save.open("text.txt");
 	for (int i = 0;i<TAILLE;i++)
 		{
 			for (int j=0 ; j<TAILLE;j++)
@@ -193,3 +193,28 @@ int Goban::LiberteGroupe(int a, int b)
 	}
 	return ListeCaseVide.size();
 }
+/*
+void Goban::Sauvegarder(int coup)
+{
+    save << "Coup " << coup << endl;
+    save << "Joueur ";
+    if(Joueur1Actif)
+    {
+        save << 1;
+    }
+    else
+    {
+        save << 2;
+    }
+    save << endl;
+    for(int i=0; i<TAILLE; i++)
+    {
+        for(int j=0; j<TAILLE; j++)
+        {
+            save << plateau[i][j];
+        }
+        save << endl;
+    }
+    save << endl;
+}
+*/
