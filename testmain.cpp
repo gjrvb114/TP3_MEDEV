@@ -15,8 +15,6 @@ int main()
         machin.PoserPierre(1,3);
         machin.Affichage();
         machin.Sauvegarder(1);
-        cout << endl;
-        cout << "truc"<< endl;
         vector<vector<int> > ListeGroupe;
 
 

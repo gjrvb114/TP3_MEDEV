@@ -156,8 +156,11 @@ vector<vector<int> > Goban::ListeGroupe(int x,int y)
 
 void Goban::Sauvegarder(int coup)
 {
+    // Sauvegarde le numéro du coup
     save << "Coup " << coup << endl;
     save << "Joueur ";
+    
+    // Sauvegarde le joueur qui a joué
     if(Joueur1Actif)
     {
         save << 1;
@@ -167,6 +170,8 @@ void Goban::Sauvegarder(int coup)
         save << 2;
     }
     save << endl;
+    
+    // Sauvegarde le plateau
     for(int i=0; i<TAILLE; i++)
     {
         for(int j=0; j<TAILLE; j++)
@@ -218,4 +223,9 @@ int Goban::LiberteGroupe(int a, int b)
 							}
 	}
 	return ListeCaseVide.size();
+}
+
+bool CoupDejaJoue()
+{
+    
 }
