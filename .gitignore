@@ -28,3 +28,14 @@ Debug/
 gtest/gtest-all.cc
 gtest/gtest.h
 testmain - Copie.cpp
+Goban.gcda
+Goban.gcno
+algogen_cov
+test_Goban.gcda
+test_Goban.gcno
+testmain.gcda
+testmain.gcno
+user_test.info
+utilitaire.gcda
+utilitaire.gcno
+user_result/

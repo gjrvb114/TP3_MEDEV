@@ -15,8 +15,8 @@ TEST(GobanClass,PoserPierre){
 	Goban machin = Goban();
 	machin.PoserPierre(2,2);
 	machin.SetJoueur();
-	EXPECT_EQ(true,machin.PoserPierre(2,3));
-	EXPECT_EQ(false,machin.PoserPierre(2,2));
+	EXPECT_TRUE(machin.PoserPierre(2,3));
+	EXPECT_FALSE(machin.PoserPierre(2,2));
 }
 TEST (GobanClass, ListeGroupe)
 {
