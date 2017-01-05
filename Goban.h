@@ -9,16 +9,14 @@
 
 #pragma once
 #include <iostream>
-#include <fstream>
 #include <vector>
-
 using namespace std;
 
 const int TAILLE = 5;
 class Goban
 	{
 	private:
-                ofstream save;
+		//fstream save;
 		int plateau[TAILLE][TAILLE];
 		bool Joueur1Actif;
 		bool Apasse;
@@ -35,7 +33,7 @@ class Goban
 		void Affichage();
 		void Jouer();
 		void EffacerGroupe(int x,int y);
-		void Sauvegarder(int coup);
+		void Sauvegarder();
 		bool CoupDejaJoue();
 		void CompterPoints();
 	};

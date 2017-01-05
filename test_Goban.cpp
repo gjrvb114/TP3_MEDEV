@@ -47,4 +47,3 @@ TEST (GobanClass, LiberteGroupe)
 	EXPECT_EQ(2,machin.LiberteGroupe(1,3));
 
 }
-
