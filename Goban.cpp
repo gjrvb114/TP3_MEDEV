@@ -213,26 +213,26 @@ int Goban::LiberteGroupe(int a, int b)
 }
 
 // Renvoie true ssi la case existe dans le goban
-bool Goban::EstDedans(int x, int y)
+bool estDedans(int x, int y)
 {
 	return (x>=0 && y>=0 && x<TAILLE && y<TAILLE);
 }
 
 // Renvoie les 4 voisins d'une case
-vector<pair<int,int>> Goban::Voisins(int x, int y)
+vector<pair<int,int>> Voisins(int x, int y)
 {
 	// On parcourt les voisins et vérifie qu'ils sont dans le plateau
 	vector<pair<int,int>> v;
 	for(int i=-1; i<2; i+=2)
 	{
-		if(EstDedans(x+i, y))
+		if(estDedans(x+i, y))
 		{
 			v.push_back(pair<int,int>(x+i, y));
 		}
 	}
 	for(int j=-1; j<2; j+=2)
 	{
-		if(EstDedans(x, y+j))
+		if(estDedans(x, y+j))
 		{
 			v.push_back(pair<int,int>(x, y+j));
 		}
@@ -242,7 +242,7 @@ vector<pair<int,int>> Goban::Voisins(int x, int y)
 
 //Retourne la couleur inverse
 //si la couleur est VIDE, renvoie VIDE
-int Goban::couleurInverse(const int& couleur)
+int couleurInverse(const int& couleur)
 {
 	int inverse(VIDE);
 	if(couleur==NOIR)

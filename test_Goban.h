@@ -82,10 +82,53 @@ TEST (GobanClass, Sauvegarder)
 	remove("test_save.txt");
 }
 
+TEST (Bobby, CouleurInverse)
+{
+	EXPECT_EQ(NOIR, couleurInverse(BLANC));
+	EXPECT_EQ(VIDE, couleurInverse(VIDE));
+	EXPECT_EQ(BLANC, couleurInverse(NOIR));
+}
 
+TEST (Bobby, EstDedans)
+{
+	for(int i=-1; i<TAILLE+1; i++)
+	{
+		for(int j=-1; j<TAILLE+1; j++)
+		{
+			if(i!=-1 && i!=TAILLE && j!=-1 && j!=TAILLE)
+			{
+				EXPECT_TRUE(estDedans(i, j));
+			}
+			else
+			{
+				EXPECT_FALSE(estDedans(i, j));
+			}
+		}
+	}
+	
+}
 
-
-
+TEST (Bobby, Voisins)
+{
+	vector<pair<int,int>> voisins;
+	voisins = Voisins(1,1);
+	EXPECT_NE(voisins.end(), find(voisins.begin(), voisins.end(), pair<int,int>(0,1)));
+	EXPECT_NE(voisins.end(), find(voisins.begin(), voisins.end(), pair<int,int>(1,0)));
+	EXPECT_NE(voisins.end(), find(voisins.begin(), voisins.end(), pair<int,int>(2,1)));
+	EXPECT_NE(voisins.end(), find(voisins.begin(), voisins.end(), pair<int,int>(1,2)));
+	EXPECT_EQ(voisins.size(), 4);
+	
+	voisins = Voisins(0,0);
+	EXPECT_NE(voisins.end(), find(voisins.begin(), voisins.end(), pair<int,int>(0,1)));
+	EXPECT_NE(voisins.end(), find(voisins.begin(), voisins.end(), pair<int,int>(1,0)));
+	EXPECT_EQ(voisins.size(), 2);
+	
+	voisins = Voisins(1,0);
+	EXPECT_NE(voisins.end(), find(voisins.begin(), voisins.end(), pair<int,int>(0,0)));
+	EXPECT_NE(voisins.end(), find(voisins.begin(), voisins.end(), pair<int,int>(1,1)));
+	EXPECT_NE(voisins.end(), find(voisins.begin(), voisins.end(), pair<int,int>(2,0)));
+	EXPECT_EQ(voisins.size(), 3);
+}
 
 
 
