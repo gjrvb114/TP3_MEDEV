@@ -10,11 +10,11 @@
 using namespace std;
 
 const int TAILLE = 5;
+enum Case{VIDE =0,NOIR = 1 ,BLANC = 2};
 
 class Goban
 	{
 	private:
-		ofstream save;
 		int plateau[TAILLE][TAILLE];
 		bool Joueur1Actif;
 		bool Apasse;
@@ -27,7 +27,6 @@ class Goban
 		int couleurInverse(const int& couleur);
 
 	public:
-		enum Case{VIDE =0,NOIR = 1 ,BLANC = 2};
 		Goban();
 		void SetJoueur();
 		bool PoserPierre(int x, int y); // x = i et y = j dans le tableau

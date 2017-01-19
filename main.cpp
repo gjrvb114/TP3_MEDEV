@@ -14,6 +14,7 @@ int main()
 	machin.PoserPierre(2,2);
 	machin.PoserPierre(2,4);
 	machin.PoserPierre(3,3);
+	machin.Sauvegarder(1);
 	machin.SetJoueur();
 	machin.PoserPierre(1,3);
 	machin.PoserPierre(2,3);
@@ -32,6 +33,6 @@ int main()
 	int truc =  machin.ListeGroupe(4,4).size();
 	cout << "taille du groupe = " << truc<< endl;
 	
-	machin.Sauvegarder(1);
+	
 	return 0;
 }

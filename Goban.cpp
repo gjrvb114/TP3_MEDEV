@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// Commentaire
 void Goban::Affichage(){
 	for (int i = 0;i<TAILLE;i++)
 	{
@@ -29,7 +30,6 @@ void Goban::Affichage(){
 
 Goban::Goban()
 {
-	ofstream save("test_save.txt");
 	for (int i = 0;i<TAILLE;i++)
 		{
 			for (int j=0 ; j<TAILLE;j++)
@@ -142,6 +142,8 @@ vector<vector<int> > Goban::ListeGroupe(int x,int y)
 
 void Goban::Sauvegarder(int coup)
 {
+	ofstream save("test_save.txt", ofstream::ate);
+	
     // Sauvegarde le numéro du coup
     save << "Coup " << coup << endl;
     save << "Joueur ";
@@ -162,11 +164,11 @@ void Goban::Sauvegarder(int coup)
     {
         for(int j=0; j<TAILLE; j++)
         {
-            save << plateau[i][j];
+            save << plateau[i][j] << "\t";
         }
         save << endl;
     }
-    save << endl;    
+    save << endl;
 }
     
 int Goban::LiberteGroupe(int a, int b)
